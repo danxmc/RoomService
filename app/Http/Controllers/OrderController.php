@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('orders.index', compact('orders', $orders));
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -53,7 +53,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('orders.show', compact('order', $order));
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -64,7 +64,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders.edit', compact('order', $order));
+        return view('orders.edit', compact('order'));
     }
 
     /**
@@ -80,8 +80,7 @@ class OrderController extends Controller
         $request->validate([
             'type' => 'required|min:3',
         ]);
-        
-        $order->update($request->all());
+        $order = Order::findOrFail($order->id)->update($request->all());
         $request->session()->flash('message', 'Successfully modified the order!');
         return redirect('orders');
     }
@@ -92,7 +91,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Request $request, Order $order)
     {
         $order->delete();
         $request->session()->flash('message', 'Successfully deleted the order!');
