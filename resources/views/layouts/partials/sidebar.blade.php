@@ -24,7 +24,7 @@
                 <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Menu</span> </a>
                 <div class="collapse" id="menu2" data-parent="#sidebar">
                     <a href="{{ URL::to('meals') }}" class="list-group-item">View Menu</a>
-                    <a href="#" class="{{ URL::to('meals/create') }}">Add Meal to Menu</a>
+                    <a href="{{ URL::to('meals/create') }}" class="list-group-item">Add Meal to Menu</a>
                 </div>
                 @else
                 <a href="{{ URL::to('meals') }}" class="list-group-item d-inline-block collapsed"><i class="fa fa-book"></i> <span class="d-none d-md-inline">View Menu</span></a>
