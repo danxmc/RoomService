@@ -26,5 +26,12 @@ class UsersTableSeeder extends Seeder
             'remember_token' => str_random(10),
             'role' => 'COOK',
         ]);
+        User::create([
+            'name' => 'Client',
+            'email' => 'client@client.com',
+            'password' => '$2y$10$45ejeGIbA.iZF12zoGzfKeh3RLeELEtS2wmCA0t98LyDdFUOdOn9e',
+            'remember_token' => str_random(10),
+            'role' => 'CLIENT',
+        ]);
     }
 }
