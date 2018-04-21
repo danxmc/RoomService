@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Meal;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class MealController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.index', compact('orders'));
+        $meals = Meal::all();
+        return view('meals.index', compact('meals'));
     }
 
     /**
@@ -25,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        return view('meals.create');
     }
 
     /**
@@ -38,64 +38,68 @@ class OrderController extends Controller
     {
         //Validate
         $request->validate([
-            'type' => 'required|min:3',
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
         ]);
         
-        $order = Order::create($request->all());
-        return redirect('/orders/' . $order->id);
+        $meal = Meal::create($request->all());
+        return redirect('/meals/' . $meal->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Meal $meal)
     {
-        return view('orders.show', compact('order'));
+        return view('meals.show', compact('meal'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Meal $meal)
     {
-        return view('orders.edit', compact('order'));
+        return view('meals.edit', compact('meal'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param  \App\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Meal $meal)
     {
         //Validate
         $request->validate([
-            'type' => 'required|min:3',
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
         ]);
-        $order = Order::findOrFail($order->id)->update($request->all());
-        $request->session()->flash('message', 'Successfully modified the order!');
-        return redirect('orders');
+        $meal = Meal::findOrFail($meal->id)->update($request->all());
+        $request->session()->flash('message', 'Successfully modified the meal!');
+        return redirect('meals');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param  \App\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Order $order)
+    public function destroy(Request $request, Meal $meal)
     {
-        $order->delete();
-        $request->session()->flash('message', 'Successfully deleted the order!');
-        return redirect('orders');
+        $meal->delete();
+        $request->session()->flash('message', 'Successfully deleted the meal!');
+        return redirect('meals');
     }
 }

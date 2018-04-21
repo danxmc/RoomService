@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('orders', 'OrderController');
+Route::resource('meals', 'MealController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
