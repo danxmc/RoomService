@@ -30,9 +30,16 @@
             <td>{{$order->room}}</td>
             <td>
                 @foreach($order->meals as $meal)
-                {{ $meal->name }} - {{$meal->price}} x {{ $meal->pivot->meal_quantity }}<br>
+                {{ $meal->name }} - ${{$meal->price}} x {{ $meal->pivot->meal_quantity }}<br>
                 @endforeach
             </td>
+
+            @if($order->status == true)
+            <td><b>Delivered</b></td>
+            @else
+            <td><b>Not Delivered</b></td>
+            @endif
+
             <td>$
                 @php($total = 0)
                 @foreach($order->meals as $meal)
@@ -41,11 +48,6 @@
                 {{ $total }}
             </td>
 
-            @if($order->status == true)
-            <td><b>Delivered</b></td>
-            @else
-            <td><b>Not Delivered</b></td>
-            @endif
 
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">

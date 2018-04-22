@@ -32,13 +32,17 @@
         <label class="radio-inline"><input type="radio" name="status" value="false" checked>Not Delivered</label>
         @endif
     </div>
+    @php($key)
+    @php($mealIds = array())
+    @foreach($order->meals as $oMeal)
+        @php($mealIds[] = array('id' => $oMeal->id, 'quantity'=> $oMeal->pivot->meal_quantity))
+    @endforeach
     <div class="form-group">
         @foreach($meals as $meal)
         <div class="row">
-            @foreach($order->meals as $oMeal)
             <div class="col">
                 <div class="form-check">
-                    @if($meal->id == $oMeal->id)
+                    @if(in_array($meal->id, array_column($mealIds, 'id')))
                     <input class="form-check-input" type="checkbox" value="{{ $meal->id }}" name="orderMeal[]" checked>
                     @else
                     <input class="form-check-input" type="checkbox" value="{{ $meal->id }}" name="orderMeal[]">
@@ -48,13 +52,13 @@
             </div>
             <div class="col">
                 <label for="orderMealQuantity[]">Quantity</label>
-                @if($meal->id == $oMeal->id)
-                <input type="number" value="{{ $oMeal->pivot->meal_quantity }}" class="form-control" id="orderRoom" name="orderMealQuantity[]" step="1">
+                @if(in_array($meal->id, array_column($mealIds, 'id')))
+                @php($key = array_search($meal->id, array_column($mealIds, 'id')))
+                <input type="number" value="{{ $mealIds[$key]['quantity'] }}" class="form-control" id="orderRoom" name="orderMealQuantity[]" step="1">
                 @else
                 <input type="number" class="form-control" id="orderRoom" name="orderMealQuantity[]" step="1">
-                @endif
+                @endif  
             </div>
-            @endforeach
         </div>
         @endforeach
     </div>

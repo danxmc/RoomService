@@ -97,8 +97,7 @@ class OrderController extends Controller
         ]);
         $data = $request->all();
         $data['status'] = ($request['status'] == "true") ? true : false ;
-        $order = Order::findOrFail($order->id)->update($data);
-
+        
         $order->meals()->detach();
 
         $data['orderMealQuantity'] = array_filter($data['orderMealQuantity']);// Removes empty array elements
@@ -108,6 +107,7 @@ class OrderController extends Controller
             $order->meals()->attach($value, ['meal_quantity' => $data['orderMealQuantity'][$key]]);
         }
         
+        $order = Order::findOrFail($order->id)->update($data);
         $request->session()->flash('message', 'Successfully modified the order!');
         return redirect('orders');
     }
