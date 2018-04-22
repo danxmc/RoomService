@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
             MealsTableSeeder::class,
         ]);
         factory('App\User', 10)->create();
+        factory('App\Meal', 3)->create();
+        //factory('App\Order', 3)->create();
     }
 }

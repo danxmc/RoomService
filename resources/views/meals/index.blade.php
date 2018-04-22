@@ -13,7 +13,9 @@
             <th scope="col">Meal Name</th>
             <th scope="col">Meal Details</th>
             <th scope="col">Meal Price</th>
+            @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK")
             <th scope="col">Action</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -25,6 +27,7 @@
             </td>
             <td>{{$meal->description}}</td>
             <td>${{$meal->price}}</td>
+            @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK") 
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ URL::to('meals/' . $meal->id . '/edit') }}">
@@ -37,6 +40,7 @@
                     </form>
                 </div>
             </td>
+            @endif
         </tr>
         @endforeach
     </tbody>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Meal;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -25,7 +26,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $meals = Meal::all();
+        return view('orders.create', compact('meals'));
     }
 
     /**
@@ -38,10 +40,20 @@ class OrderController extends Controller
     {
         //Validate
         $request->validate([
-            'type' => 'required|min:3',
+            'name' => 'required',
+            'phone' => 'required|min:7',
+            'room' => 'required',
         ]);
-        
-        $order = Order::create($request->all());
+        $data = $request->all();
+        $data['status'] = false;
+        $order = Order::create($data);
+
+        $data['orderMealQuantity'] = array_filter($data['orderMealQuantity']);// Removes empty array elements
+        $data['orderMealQuantity'] = array_values($data['orderMealQuantity']);// Reindexes array
+
+        foreach ($data['orderMeal'] as $key => $value) {
+            $order->meals()->attach($value, ['meal_quantity' => $data['orderMealQuantity'][$key]]);
+        }
         return redirect('/orders/' . $order->id);
     }
 
@@ -64,7 +76,8 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders.edit', compact('order'));
+        $meals = Meal::all();
+        return view('orders.edit', compact('order', 'meals'));
     }
 
     /**
@@ -78,9 +91,23 @@ class OrderController extends Controller
     {
         //Validate
         $request->validate([
-            'type' => 'required|min:3',
+            'name' => 'required',
+            'phone' => 'required|min:7',
+            'room' => 'required',
         ]);
-        $order = Order::findOrFail($order->id)->update($request->all());
+        $data = $request->all();
+        $data['status'] = ($request['status'] == "true") ? true : false ;
+        $order = Order::findOrFail($order->id)->update($data);
+
+        $order->meals()->detach();
+
+        $data['orderMealQuantity'] = array_filter($data['orderMealQuantity']);// Removes empty array elements
+        $data['orderMealQuantity'] = array_values($data['orderMealQuantity']);// Reindexes array
+
+        foreach ($data['orderMeal'] as $key => $value) {
+            $order->meals()->attach($value, ['meal_quantity' => $data['orderMealQuantity'][$key]]);
+        }
+        
         $request->session()->flash('message', 'Successfully modified the order!');
         return redirect('orders');
     }
