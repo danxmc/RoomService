@@ -20,10 +20,6 @@
         <textarea class="form-control" rows="5" id="orderDescription" name="description"></textarea>
     </div>
     <div class="form-group">
-        <label for="room">Room</label>
-        <input type="number" class="form-control" id="orderRoom" name="room" step="1">
-    </div>
-    <div class="form-group">
         @foreach($meals as $meal)
         <div class="row">
             <div class="col">

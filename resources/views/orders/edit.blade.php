@@ -21,10 +21,6 @@
         <textarea class="form-control" rows="5" id="orderDescription" name="description">{{$order->description}}</textarea>
     </div>
     <div class="form-group">
-        <label for="room">Room</label>
-        <input type="number" value="{{$order->room}}" class="form-control" id="orderRoom" name="room" step="1">
-    </div>
-    <div class="form-group">
         @if($order->status == true)
         <label class="radio-inline"><input type="radio" name="status" value="true" checked>Delivered</label>
         <label class="radio-inline"><input type="radio" name="status" value="false">Not Delivered</label>

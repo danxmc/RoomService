@@ -20,7 +20,6 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->boolean('status');
             $table->text('description');
-            $table->string('room');
             $table->timestamps();
         });
     }

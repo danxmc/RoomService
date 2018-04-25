@@ -29,7 +29,7 @@
             <td>{{$order->user->name}}</td>
             <td>{{$order->phone}}</td>
             <td>{{$order->description}}</td>
-            <td>{{$order->room}}</td>
+            <td>{{$order->user->room->room}}</td>
             <td>
                 @foreach($order->meals as $meal)
                 {{ $meal->name }} - ${{$meal->price}} x {{ $meal->pivot->meal_quantity }}<br>
