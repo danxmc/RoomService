@@ -35,17 +35,17 @@
                     <th scope="row"><a href="/meals/{{$meal->id}}">{{$meal->id}}</a></th>
                     <td>{{$meal->name}}</td>
                     <td>{{$meal->pivot->meal_quantity}}</td>
-                    <td>{{$meal->price}}</td>
+                    <td>$ {{$meal->price}}</td>
                     <td>
                         @php($linetotal = $meal->price * $meal->pivot->meal_quantity)
                         @php($total += $linetotal)
-                        {{$linetotal}}
+                        $ {{$linetotal}}
                     </td>
                 </tr>
                 @endforeach
                 <tr>
                     <td colspan="4">Order Total</td>
-                    <td>{{$total}}</td>
+                    <td>$ {{$total}}</td>
                 </tr>
             </tbody>
         </table>

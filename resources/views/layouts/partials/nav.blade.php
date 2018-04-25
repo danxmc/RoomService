@@ -11,10 +11,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                @auth
-                <li><a class="nav-link" href="{{ URL::to('orders') }}">Orders</a></li>
-                <li><a class="nav-link" href="{{ URL::to('orders/create') }}">Create an Order</a></li>
-                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->

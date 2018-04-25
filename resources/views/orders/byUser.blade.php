@@ -23,6 +23,7 @@
         </tr>
     </thead>
     <tbody>
+        @php($total = 0)
         @foreach($orders as $order)
         <tr>
             <th scope="row"><a href="/orders/{{$order->id}}">{{$order->id}}</a></th>
@@ -38,7 +39,6 @@
 
             <td>$
                 @php($lineTotal = 0)
-                @php($total = 0)
                 @foreach($order->meals as $meal)
                     @php($lineTotal += $meal->price * $meal->pivot->meal_quantity)
                 @endforeach
