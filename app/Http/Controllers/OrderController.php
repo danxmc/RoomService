@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Meal;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -46,6 +48,8 @@ class OrderController extends Controller
         ]);
         $data = $request->all();
         $data['status'] = false;
+        //$data['user_id'] = Auth::user()->id;
+
         $order = Order::create($data);
 
         $data['orderMealQuantity'] = array_filter($data['orderMealQuantity']);// Removes empty array elements
@@ -124,5 +128,27 @@ class OrderController extends Controller
         $order->delete();
         $request->session()->flash('message', 'Successfully deleted the order!');
         return redirect('orders');
+    }
+
+    /**
+     * Show the Pending Orders
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function pending()
+    {
+        $orders = Order::where('status', false)->get();
+        return view('orders.pending', compact('orders'));
+    }
+
+    /**
+     * Show the Delivered Orders
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function delivered()
+    {
+        $orders = Order::where('status', true)->get();
+        return view('orders.delivered', compact('orders'));
     }
 }

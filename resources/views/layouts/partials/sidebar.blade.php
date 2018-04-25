@@ -8,15 +8,15 @@
                 @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK") 
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-list-ul"></i> <span class="d-none d-md-inline">Orders</span> </a>
                 <div class="collapse" id="menu1" data-parent="#sidebar">
-                    <a href="#" class="list-group-item">Pending Orders</a>
-                    <a href="#" class="list-group-item">Completed Orders</a>
+                    <a href="{{ URL::to('orders-pending') }}" class="list-group-item">Pending Orders</a>
+                    <a href="{{ URL::to('orders-delivered') }}" class="list-group-item">Delivered Orders</a>
                     <a href="{{ URL::to('orders') }}" class="list-group-item">All Orders</a>
                 </div>
                 @else
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-list-ul"></i> <span class="d-none d-md-inline">Orders</span> </a>
                 <div class="collapse" id="menu1" data-parent="#sidebar">
                     <a href="{{ URL::to('orders/create') }}" class="list-group-item">Add Order</a>
-                    <a href="#" class="list-group-item">All Orders</a>
+                    <a href="{{ URL::to('orders') }}" class="list-group-item">All Orders</a>
                 </div>
                 @endif
 

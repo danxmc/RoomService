@@ -9,7 +9,8 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" value="{{$order->name}}" class="form-control" id="orderName" name="name">
+        <input type="text" value="{{$order->user->name}}" placeholder="{{ $order->user->name }}" class="form-control" id="orderName" name="name" readonly>
+        <input type="hidden" name="user_id" value="{{ $order->user->id }}">
     </div>
     <div class="form-group">
         <label for="phone">Phone</label>

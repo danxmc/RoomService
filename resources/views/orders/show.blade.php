@@ -5,7 +5,7 @@
  
     <div class="jumbotron text-center">
         <p>
-            <strong>Client Name:</strong> {{ $order->name }}<br>
+            <strong>Client Name:</strong> {{ $order->user->name }}<br>
             <strong>Client's Phone:</strong> {{ $order->phone }}<br>
             <strong>Order Description:</strong> {{ $order->description }}<br>
             <strong>Order Room:</strong> {{ $order->room }}<br>

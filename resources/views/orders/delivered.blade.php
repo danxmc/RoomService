@@ -6,6 +6,7 @@
 <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
+<h1>Delivered Orders</h1>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -15,7 +16,6 @@
             <th scope="col">Order Description</th>
             <th scope="col">Order Room</th>
             <th scope="col">Food</th>
-            <th scope="col">Order Status</th>
             <th scope="col">Total</th>
             @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK")
             <th scope="col">Action</th>
@@ -35,12 +35,6 @@
                 {{ $meal->name }} - ${{$meal->price}} x {{ $meal->pivot->meal_quantity }}<br>
                 @endforeach
             </td>
-
-            @if($order->status == true)
-            <td><b>Delivered</b></td>
-            @else
-            <td><b>Not Delivered</b></td>
-            @endif
 
             <td>$
                 @php($total = 0)

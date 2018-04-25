@@ -20,3 +20,5 @@ Route::resource('meals', 'MealController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/orders-pending', 'OrderController@pending');
+Route::get('/orders-delivered', 'OrderController@delivered');
