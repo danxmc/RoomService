@@ -151,4 +151,15 @@ class OrderController extends Controller
         $orders = Order::where('status', true)->get();
         return view('orders.delivered', compact('orders'));
     }
+
+    /**
+     * Show the Orders by a specific User.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function userOrders()
+    {
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+        return view('orders.byUser', compact('orders'));
+    }
 }

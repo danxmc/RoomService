@@ -44,7 +44,7 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <td colspan="4">Total</td>
+                    <td colspan="4">Order Total</td>
                     <td>{{$total}}</td>
                 </tr>
             </tbody>

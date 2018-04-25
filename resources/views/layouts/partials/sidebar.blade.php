@@ -16,7 +16,7 @@
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-list-ul"></i> <span class="d-none d-md-inline">Orders</span> </a>
                 <div class="collapse" id="menu1" data-parent="#sidebar">
                     <a href="{{ URL::to('orders/create') }}" class="list-group-item">Add Order</a>
-                    <a href="{{ URL::to('orders') }}" class="list-group-item">All Orders</a>
+                    <a href="{{ URL::to('my-orders') }}" class="list-group-item">My Orders</a>
                 </div>
                 @endif
 
