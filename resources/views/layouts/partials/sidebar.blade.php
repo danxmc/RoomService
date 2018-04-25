@@ -36,6 +36,13 @@
                     <a href="{{ URL::to('users/create') }}" class="list-group-item">Add User</a>
                     <a href="{{ URL::to('users') }}" class="list-group-item">All Users</a>
                 </div>
+                <a href="#menu4" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-hotel"></i> <span class="d-none d-md-inline">Room</span> </a>
+                <div class="collapse" id="menu4" data-parent="#sidebar">
+                    <a href="{{ URL::to('rooms/create') }}" class="list-group-item">Add Room</a>
+                    <a href="{{ URL::to('rooms-occupied') }}" class="list-group-item">Occupied Rooms</a>
+                    <a href="{{ URL::to('rooms-vacant') }}" class="list-group-item">Vacant Rooms</a>
+                    <a href="{{ URL::to('rooms') }}" class="list-group-item">All Rooms</a>
+                </div>
                 @endif
             </div>
         </div>

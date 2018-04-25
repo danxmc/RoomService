@@ -22,5 +22,10 @@ class MealsTableSeeder extends Seeder
             'description' => 'Classic Hamburguer',
             'price' => '89.50',
         ]);
+        Meal::create([
+            'name' => 'Tacos',
+            'description' => '5 Beef Tacos',
+            'price' => '50',
+        ]);
     }
 }

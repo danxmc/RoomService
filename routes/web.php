@@ -17,8 +17,11 @@ Route::get('/', function () {
 
 Route::resource('orders', 'OrderController');
 Route::resource('meals', 'MealController');
+Route::resource('rooms', 'RoomController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/orders-pending', 'OrderController@pending');
 Route::get('/orders-delivered', 'OrderController@delivered');
+Route::get('/rooms-occupied', 'RoomController@occupied');
+Route::get('/rooms-vacant', 'RoomController@vacant');
