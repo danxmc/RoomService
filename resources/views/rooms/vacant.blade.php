@@ -11,7 +11,6 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">Room</th>
-            <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -19,11 +18,6 @@
         @foreach($rooms as $room)
         <tr>
             <td><a href="/room/{{$room->id}}">{{$room->room}}</a></td>
-            @if($room->status == true)
-            <td><b>Occupied</b></td>
-            @else
-            <td><b>Vacant</b></td>
-            @endif
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ URL::to('rooms/' . $room->id . '/edit') }}">

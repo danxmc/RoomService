@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\User;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -25,8 +26,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $rooms = Room::all();
-        return view('rooms.create', compact('rooms'));
+        return view('rooms.create');
     }
 
     /**
@@ -77,7 +77,13 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         $data = $request->all();
-        $data['status'] = ($request['status'] == "true") ? true : false ;
+        
+        if ($request['status'] == "true") {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+            $data['user_id'] = NULL;
+        }
 
         $room = Room::findOrFail($room->id)->update($data);
         $request->session()->flash('message', 'Successfully modified the room!');

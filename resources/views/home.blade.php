@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in! as role: {{ Auth::user()->role }}
+                    <p>You are logged in to RoomService</p>
+                    
+                    <p><b><a href="{{ URL::to('users/' . Auth::user()->id) }}">View my information</a></b></p>
+                    <p><b><a href="{{ URL::to('users/' . Auth::user()->id . '/edit') }}">Edit my information</a></b></p>
                 </div>
             </div>
         </div>

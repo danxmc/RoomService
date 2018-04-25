@@ -10,6 +10,7 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">Room</th>
+            <th scope="col">User</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
@@ -17,7 +18,14 @@
     <tbody>
         @foreach($rooms as $room)
         <tr>
-            <td><a href="/room/{{$room->id}}">{{$room->room}}</a></td>
+            <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
+            <td>
+            @if($room->status == true)
+            <b>{{$room->user->name}}</b>
+            @else
+            <b>---</b>
+            @endif
+            </td>
             @if($room->status == true)
             <td><b>Occupied</b></td>
             @else
