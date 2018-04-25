@@ -44,7 +44,6 @@ class OrderController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required|min:7',
-            'room' => 'required',
         ]);
         $data = $request->all();
         $data['status'] = false;
@@ -97,7 +96,6 @@ class OrderController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required|min:7',
-            'room' => 'required',
         ]);
         $data = $request->all();
         $data['status'] = ($request['status'] == "true") ? true : false ;
