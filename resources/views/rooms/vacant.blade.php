@@ -17,7 +17,7 @@
     <tbody>
         @foreach($rooms as $room)
         <tr>
-            <td><a href="/room/{{$room->id}}">{{$room->room}}</a></td>
+            <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ URL::to('rooms/' . $room->id . '/edit') }}">

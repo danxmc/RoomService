@@ -18,7 +18,7 @@
     <tbody>
         @foreach($rooms as $room)
         <tr>
-            <td><a href="/room/{{$room->id}}">{{$room->room}}</a></td>
+            <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
             <td>
             @if($room->status == true)
             <b>{{$room->user->name}}</b>
