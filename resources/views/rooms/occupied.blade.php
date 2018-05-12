@@ -31,9 +31,9 @@
                     <a href="{{ URL::to('rooms/' . $room->id . '/edit') }}">
                         <button type="button" class="btn btn-warning">Edit</button>
                     </a>&nbsp;
-                    <form action="{{url('rooms', [$room->id])}}" method="POST">
+                    <form action="{{url('rooms', [$room->id])}}" method="POST" onsubmit="return confirm('Do you really want to submit the form?')">
+                    @csrf
                         <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>
                 </div>

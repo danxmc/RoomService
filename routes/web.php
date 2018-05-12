@@ -21,7 +21,7 @@ Route::resource('rooms', 'RoomController');
 Route::resource('users', 'UserController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/orders-pending', 'OrderController@pending');
 Route::get('/orders-delivered', 'OrderController@delivered');
 Route::get('/my-orders', 'OrderController@userOrders');

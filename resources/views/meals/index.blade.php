@@ -1,48 +1,212 @@
 @extends('layouts.app')
+@section('css')
 
+@endsection
 @section('content')
 
 @if (Session::has('message'))
 <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
+<section id="home">
+<div class="home-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text-center">
+                            <h3>Welcome to our Menu</h3>
+                            <div class="flexslider intro-slider">
+                                <ul class="slides">
+                                    <li>
+                                        Great Service
+                                    </li>
+                                    <li>
+                                        Delicious restaurant
+                                    </li>
+                                    <li>
+                                        Quality foods
+                                    </li>
+                                </ul>
+                            </div><!--flex slider-->
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Meal Name</th>
-            <th scope="col">Meal Details</th>
-            <th scope="col">Meal Price</th>
-            @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK")
-            <th scope="col">Action</th>
-            @endif
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($meals as $meal)
-        <tr>
-            <th scope="row">{{$meal->id}}</th>
-            <td>
-                <a href="/meals/{{$meal->id}}">{{$meal->name}}</a>
-            </td>
-            <td>{{$meal->description}}</td>
-            <td>${{$meal->price}}</td>
-            @if (Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK") 
-            <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ URL::to('meals/' . $meal->id . '/edit') }}">
-                        <button type="button" class="btn btn-warning">Edit</button>
-                    </a>&nbsp;
-                    <form action="{{url('meals', [$meal->id])}}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger" value="Delete" />
-                    </form>
+                        </div>
+                    </div>
                 </div>
-            </td>
-            @endif
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+            </div>
+            </section>
+
+            <section id="menu" class="menu-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 center-title text-center">
+                        <h3>Menu</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Look at the great menu we have for you.
+                            Make your order and we will take it to your room.
+                        </p>
+                    </div>
+                </div><!--section title-->
+                <div class="row">
+                <h2>Food</h2>
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 != 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-sm-5">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 == 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                <h2>Desserts</h2>
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 != 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-sm-5">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 == 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                <h2>Drinks</h2>
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 != 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-sm-5">
+                        <ul class="menu-style list-unstyled">
+                        @foreach($meals as $key=> $meal)
+                        @if(($key+1)%2 == 0)
+                            <li class="clearfix">
+                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+
+                                <div class="detail">
+                                    <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
+                                    {{$meal->description}}
+                                    <span class="price">${{$meal->price}}</span>
+                                </div>
+                            </li>
+                        @endif
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>                             
+        </section><!--menu section end here-->
+
+        <section class="our-chefs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 center-title text-center">
+                        <h3>Our Chefs</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Here are our top shefs of the month
+                        </p>
+                    </div>
+                </div><!--section title-->
+                <div class="row">
+                @foreach($users as $key=> $user)
+                @if($key<= 2)
+                    <div class="col-sm-4 margin-b-30">
+                        <div class="chef-box">
+                            <div class="chef-thumb">
+                                <img src="img/team-1.jpg" class="img-responsive" alt="">
+                                <div class="chef-overlay">
+                                    <div class="chef-social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div><!--chef thumb-->
+                            <div class="chef-desc">
+                                <h4>{{$user->name}}</h4>
+                                <em>{{$user->role}}</em>
+                                <p>
+                                    <!--descripción de USER-->
+                                    Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim.
+                                </p>
+                            </div>
+                        </div><!--chef desc-->
+                    </div><!--chef column-->
+                    @else
+                    @php
+                        break;
+                    @endphp
+                @endif
+                @endforeach
+                </div>
+            </div>
+        </section><!--Chefs section-->
+@section('scripts')
+
+@endsection
 @endsection

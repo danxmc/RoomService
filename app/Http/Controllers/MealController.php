@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Meal;
+use App\User;
 use Illuminate\Http\Request;
 
 class MealController extends Controller
@@ -15,7 +16,8 @@ class MealController extends Controller
     public function index()
     {
         $meals = Meal::all();
-        return view('meals.index', compact('meals'));
+        $users = User::where('role', 'COOK')->get();
+        return view('meals.index', compact('meals','users'));
     }
 
     /**
@@ -55,7 +57,9 @@ class MealController extends Controller
      */
     public function show(Meal $meal)
     {
-        return view('meals.show', compact('meal'));
+        $category = $meal->category;
+        $meals = Meal::where('category','$category')->get();
+        return view('meals.show', compact('meal', 'meals'));
     }
 
     /**
