@@ -17,4 +17,12 @@ class Meal extends Model
     {
         return $this->belongsToMany('App\Order')->withPivot('meal_quantity')->withTimestamps();
     }
+
+    /**
+     * The Images that belong to the Meal.
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
 }

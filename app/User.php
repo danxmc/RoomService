@@ -42,4 +42,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Room');
     }
+
+    /**
+     * The Image that the User has.
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Image');
+    }
 }
