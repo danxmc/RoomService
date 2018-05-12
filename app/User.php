@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password', 'role', 'description',
     ];
 
     /**
@@ -41,5 +41,13 @@ class User extends Authenticatable
     public function room()
     {
         return $this->hasOne('App\Room');
+    }
+
+    /**
+     * The Image that the User has.
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Image');
     }
 }
