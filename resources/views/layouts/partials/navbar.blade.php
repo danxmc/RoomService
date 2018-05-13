@@ -8,13 +8,13 @@
                         @if(Auth::check())
                             <span>Welcome {{@Auth::user()->name}}</span>
                         @else
-                            <span>Log in</span>
+                            <span>Please log in</span>
                         @endif
                         </div>
                         <div class="col-sm-6 text-right">
                             <ul class="list-inline">
                         @if(Auth::check())
-                            <li class="hidden-xs"><a href="/profile"><i class="pe-7s-user"></i>Profile</a></li>
+                            <li class="hidden-xs"><a href="{{ URL::to('users/' . Auth::user()->id) }}"><i class="pe-7s-user"></i>Profile</a></li>
                             <li class="hidden-xs"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="pe-7s-door-lock"></i>LogOut</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

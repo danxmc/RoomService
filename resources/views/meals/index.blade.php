@@ -43,6 +43,11 @@
                             Look at the great menu we have for you.
                             Make your order and we will take it to your room.
                         </p>
+                        @if(Auth::check())
+                        @if(Auth::user()->role == 'ADMIN')
+                        <a href="{{ URL::to('meals/create') }}" class="list-group-item">Add Meal to Menu</a>
+                        @endif
+                        @endif
                     </div>
                 </div><!--section title-->
                 <div class="row">
@@ -66,7 +71,7 @@
                     </div>
                     <div class="col-sm-5">
                         <ul class="menu-style list-unstyled">
-                        @foreach($food as $key=> $meal)
+                        @foreach($foods as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -86,7 +91,7 @@
                 <h2>Desserts</h2>
                     <div class="col-sm-5 col-sm-offset-1">
                         <ul class="menu-style list-unstyled">
-                        @foreach(desserts as $key=> $meal)
+                        @foreach($desserts as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -126,7 +131,7 @@
                         @foreach($drinks as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -140,7 +145,7 @@
                     </div>
                     <div class="col-sm-5">
                         <ul class="menu-style list-unstyled">
-                        @foreach(drinks as $key=> $meal)
+                        @foreach($drinks as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -168,7 +173,7 @@
                         <h3>Our Chefs</h3>
                         <span class="center-line"></span>
                         <p>
-                            Here are our top shefs of the month
+                            Here are our top chefs of the month
                         </p>
                     </div>
                 </div><!--section title-->
@@ -178,7 +183,7 @@
                     <div class="col-sm-4 margin-b-30">
                         <div class="chef-box">
                             <div class="chef-thumb">
-                                <img src="img/team-1.jpg" class="img-responsive" alt="">
+                                <img src="{{$user->image->route}}" class="img-responsive" alt="">
                                 <div class="chef-overlay">
                                     <div class="chef-social">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -192,7 +197,7 @@
                                 <em>{{$user->role}}</em>
                                 <p>
                                     <!--descripción de USER-->
-                                    Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim.
+                                    {{$user->description}}
                                 </p>
                             </div>
                         </div><!--chef desc-->

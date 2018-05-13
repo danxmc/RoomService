@@ -15,9 +15,9 @@ class MealController extends Controller
      */
     public function index()
     {
-        $foods = Meal::where('category','FOOD');
-        $drinks = Meal::where('category','drink');
-        $desserts = Meal::where('category','dessert');
+        $foods = Meal::where('category','Food')->get();
+        $drinks = Meal::where('category','Drink')->get();
+        $desserts = Meal::where('category','Dessert')->get();
         $users = User::where('role', 'COOK')->get();
         return view('meals.index', compact('foods','drinks','desserts','users'));
     }
@@ -59,8 +59,8 @@ class MealController extends Controller
      */
     public function show(Meal $meal)
     {
-        $category = $meal->category;
-        $meals = Meal::where('category','$category')->get();
+        $cate = $meal->category;
+        $meals = Meal::where('category', $cate)->get();
         return view('meals.show', compact('meal', 'meals'));
     }
 

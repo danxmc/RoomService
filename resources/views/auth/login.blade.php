@@ -1,18 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
+<div class="menu-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-11 col-sm-offset-1">
+                        <h1>Log In</h1>
+                    </div>   
+                </div>
+            </div>
+        </div><!--menu title-->
+        <section class="section-dishes">
+            <div class="container center-title">
+                <div class="row single-product">
+                    <div class="col-sm-5 col-sm-offset-1 ">
+                            <p>Please write the token given to you at the moment of registration at the hotel.</p>
+                            <p>The default password for guests is "guest"</p><br>
+                        </div>
+                    <div class="col-sm-6 ">
+                        
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Token') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -54,16 +65,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
                             </div>
                         </div>
                     </form>
+                    </div> 
+                    
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </section><!--section dishes-->
 @endsection
