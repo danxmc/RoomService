@@ -49,7 +49,7 @@
                 <h2>Food</h2>
                     <div class="col-sm-5 col-sm-offset-1">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach($foods as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-sm-5">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach($food as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -86,7 +86,7 @@
                 <h2>Desserts</h2>
                     <div class="col-sm-5 col-sm-offset-1">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach(desserts as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-sm-5">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach($desserts as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -123,7 +123,7 @@
                 <h2>Drinks</h2>
                     <div class="col-sm-5 col-sm-offset-1">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach($drinks as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
@@ -140,7 +140,7 @@
                     </div>
                     <div class="col-sm-5">
                         <ul class="menu-style list-unstyled">
-                        @foreach($meals as $key=> $meal)
+                        @foreach(drinks as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
                                 <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">

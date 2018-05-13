@@ -15,9 +15,11 @@ class MealController extends Controller
      */
     public function index()
     {
-        $meals = Meal::all();
+        $foods = Meal::where('category','FOOD');
+        $drinks = Meal::where('category','drink');
+        $desserts = Meal::where('category','dessert');
         $users = User::where('role', 'COOK')->get();
-        return view('meals.index', compact('meals','users'));
+        return view('meals.index', compact('foods','drinks','desserts','users'));
     }
 
     /**

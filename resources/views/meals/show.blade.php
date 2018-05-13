@@ -19,11 +19,11 @@
                 <div class="row single-product">
                     <div class="col-sm-5 col-sm-offset-1">
                             <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
-                            <!--foreach-->
+                            @foreach($meal->images as $image)
                                 <div class="item">
-                                    <a href="/img/resto/img-5.jpg" data-lightbox="roadtrip"> <img src="/img/resto/img-5.jpg" alt="Product image" class="img-responsive"></a>                              
+                                    <a href="{{$image->route}}" data-lightbox="roadtrip"> <img src="{{$image->route}}" alt="Product image" class="img-responsive"></a>                              
                                 </div>
-                            <!--endforeach-->
+                            @endforeach
                             </div>
                         </div>
                         <div class="col-sm-6 center-title text-center">
