@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('role');
-            $table->string('description');
+            $table->string('description')->nullable();
             //$table->unsignedInteger('room_id')->nullable();
             $table->timestamps();
         });

@@ -19,13 +19,13 @@ class RoomsTableSeeder extends Seeder
         ]);
         Room::create([
             'room' => '112',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '113',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '121',
@@ -34,48 +34,48 @@ class RoomsTableSeeder extends Seeder
         ]);
         Room::create([
             'room' => '122',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '123',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '124',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '125',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '131',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '132',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '133',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '134',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
         Room::create([
             'room' => '135',
-            'status' => 'false',
-            'user_id' => 'NULL',
+            'status' => '0',
+            'user_id' => NULL,
         ]);
     }
 }
