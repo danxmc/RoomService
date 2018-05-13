@@ -15,31 +15,31 @@ class MealsTableSeeder extends Seeder
         Meal::create([
             'name' => 'Pizza',
             'description' => 'Pepperoni Pizza',
-            'price' => '79.99',
+            'price' => 79.99,
             'category' => 'Food',
         ]);
         Meal::create([
             'name' => 'Hamburguer',
             'description' => 'Classic Hamburguer',
-            'price' => '89.50',
+            'price' => 89.50,
             'category' => 'Food',
         ]);
         Meal::create([
             'name' => 'Tacos',
             'description' => '5 Beef Tacos',
-            'price' => '50',
+            'price' => 50,
             'category' => 'Food',
         ]);
         Meal::create([
             'name' => 'Cinnamon Roll',
             'description' => 'Sweet Glazed Bread',
-            'price' => '30',
+            'price' => 30,
             'category' => 'Dessert',
         ]);
         Meal::create([
             'name' => 'Lemonade',
             'description' => 'A glass of lemonade',
-            'price' => '20',
+            'price' => 20,
             'category' => 'Drink',
         ]);
     }
