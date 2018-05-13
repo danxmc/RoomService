@@ -10,13 +10,14 @@
                 </div>
             </div>
         </div><!--menu title-->
+<form action="/orders" method="post">
+    {{ csrf_field() }}
         <section class="section-dishes">
             <div class="container center-title">
                 <div class="row single-product">
                 <div class="col-sm-5 col-sm-offset-1 ">
                     <h2>Client Details</h2>
-                    <form action="/orders" method="post">
-    {{ csrf_field() }}
+
     <div class="row form-group">
         <label class="col-sm-3 control-label" for="name">Name</label>
         <div class="col-sm-7">
@@ -27,7 +28,7 @@
     <div class="row form-group">
         <label class="col-sm-3 control-label" for="phone">Phone</label>
         <div class="col-sm-7">
-        <input type="tel" class="form-control" id="orderPhone" name="phone">
+        <input type="tel" required class="form-control" id="orderPhone" name="phone">
     </div>
         </div>
     <div class="row form-group">
@@ -50,6 +51,7 @@
     <div class="col-sm-6">
     <button type="submit" class="btn btn-primary">Order Up!</button>
     </div>
+    
     </div>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -61,13 +63,14 @@
     </div>
     @endif
     
-</form>
+
                     </div> 
                     
                     </div>
                 </div>
             </div>
         </section><!--section dishes-->
+        </form>
 @section('scripts')
 <script>
 function getPrice(value, id){

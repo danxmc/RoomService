@@ -17,12 +17,6 @@
         <section class="section-dishes">
             <div class="container">
                 <div class="row single-product">
-                @if(Auth::check())
-                @if(Auth::user()->role == 'CLIENT')
-                <form id="addToOrder">
-                @csrf
-                @endif
-                @endif
                     <div class="col-sm-5 col-sm-offset-1">
                             <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
                             @foreach($meal->images as $image)
@@ -56,8 +50,6 @@
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>
                 </div>
-            @elseif(Auth::user()->role == 'CLIENT')
-            <button type="submit" class="btn btn-primary btn-circle btn-icon"><i class="fa fa-check"></i>Añadir a orden</button>
             @endif
             @endif
                     </div>  
@@ -139,23 +131,6 @@ responsive:{
 }
 });
 
-});
-</script>
-<script>
-$("#addToOrder").submit(function(e) {
-
-var url = "producto/addToOrder"; // the script where you handle the form input.
-$.ajax({
-       type: "POST",
-       url: url,
-       data: $("#addToOrder").serialize(), // serializes the form's elements.
-       success: function(data)
-       {
-           alert(data); // show response from the php script.
-       }
-     });
-
-e.preventDefault(); // avoid to execute the actual submit of the form.
 });
 </script>
     @endsection
