@@ -13,33 +13,33 @@ class OrdersTableSeeder extends Seeder
     public function run()
     {
         Order::create([
-            'user_id' => '3',
+            'user_id' => 3,
             'phone' => '1234567',
-            'status' => '0',
+            'status' => false,
             'description' => 'No Lettuce',
         ]);
         Order::create([
-            'user_id' => '3',
+            'user_id' => 3,
             'phone' => '7654321',
-            'status' => '1',
+            'status' => true,
             'description' => 'No Mustard on Hamburguer',
         ]);
         Order::create([
-            'user_id' => '3',
+            'user_id' => 3,
             'phone' => '1234567',
-            'status' => '0',
+            'status' => false,
             'description' => '',
         ]);
         Order::create([
-            'user_id' => '3',
+            'user_id' => 3,
             'phone' => '7654321',
-            'status' => '1',
+            'status' => true,
             'description' => '',
         ]);
         Order::create([
-            'user_id' => '4',
+            'user_id' => 4,
             'phone' => '7654321',
-            'status' => '1',
+            'status' => true,
             'description' => 'Xd',
         ]);
     }

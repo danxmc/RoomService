@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$bfRtQPxybFNRkl7c8wnKYOAam0NbU8GnXwD9JEvj/LC8fOu4LRAwq',
             'remember_token' => str_random(10),
             'role' => 'ADMIN',
-            'description' => "Administrator",
+            'description' => 'Administrator',
         ]);
         User::create([
             'name' => 'Chef',
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$45ejeGIbA.iZF12zoGzfKeh3RLeELEtS2wmCA0t98LyDdFUOdOn9e',
             'remember_token' => str_random(10),
             'role' => 'CLIENT',
-            'description' => 'NULL',
+            'description' => NULL,
         ]);
         User::create([
             'name' => 'Client1',
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$45ejeGIbA.iZF12zoGzfKeh3RLeELEtS2wmCA0t98LyDdFUOdOn9e',
             'remember_token' => str_random(10),
             'role' => 'CLIENT',
-            'description' => 'NULL',
+            'description' => NULL,
         ]);
     }
 }
