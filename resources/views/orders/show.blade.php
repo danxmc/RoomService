@@ -19,7 +19,7 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Name</label>
                     <div class="col-sm-7">
-                        <p>{{ $order->user->name }}</p>
+                        <p><a href="/users/{{$order->user->id}}">{{$order->user->name}}</a></p>
                     </div>
                     </div>
                     <div class="row form-group">

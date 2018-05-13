@@ -50,7 +50,7 @@
         @foreach($orders as $order)
         <tr>
             <th scope="row"><a href="/orders/{{$order->id}}">{{$order->id}}</a></th>
-            <td>{{$order->user->name}}</td>
+            <td><a href="/users/{{$order->user->id}}">{{$order->user->name}}</a></td>
             <td>{{$order->description}}</td>
             <td>{{$order->user->room->room}}</td>
             <td>

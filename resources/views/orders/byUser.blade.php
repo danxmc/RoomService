@@ -27,9 +27,9 @@
                         <div class="row">
                     <div class="col-sm-4">
                     <h3>
-                    <a href="/orders" class="list-group-item"><i class="pe-7s-pin"></i>My Orders</a>
+                    <a href="/orders" class="list-group-item"><i class="pe-7s-note2"></i>My Orders</a>
                     
-                    <a href="{{ URL::to('orders/create') }}" class="list-group-item"><i class="pe-7s-check"></i>New Order</a>
+                    <a href="{{ URL::to('orders/create') }}" class="list-group-item"><i class="pe-7s-upload"></i>New Order</a>
                         </h3>
                         </div>
                     <div class="col-sm-8 ">

@@ -85,11 +85,13 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
-    {
-        $meals = Meal::all();
-        return view('orders.edit', compact('order', 'meals'));
-    }
+    /** 
+   * public function edit(Order $order)
+   * {
+     *   $meals = Meal::all();
+     *   return view('orders.edit', compact('order', 'meals'));
+    *}
+    */
 
     /**
      * Update the specified resource in storage.
@@ -98,7 +100,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    /**public function update(Request $request, Order $order)
     {
         //Validate
         $request->validate([
@@ -120,6 +122,13 @@ class OrderController extends Controller
         $order = Order::findOrFail($order->id)->update($data);
         $request->session()->flash('message', 'Successfully modified the order!');
         return redirect('orders');
+    }*/
+
+    public function setDelivered(Request $request){
+        Order::where('id', $request->post('id'))->update(array('status' => '1'));
+        $request->session()->flash('message', 'Successfully modified the order!');
+        return redirect('orders');
+
     }
 
     /**

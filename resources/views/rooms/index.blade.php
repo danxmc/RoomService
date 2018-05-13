@@ -1,14 +1,40 @@
 @extends('layouts.app')
-
+@section('css')
+<link href="/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+@endsection
 @section('content')
-
 @if (Session::has('message'))
 <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
-
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
+<div class="menu-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-11 col-sm-offset-1">
+                        <h1>Rooms</h1>
+                    </div>   
+                </div>
+            </div>
+        </div><!--menu title-->
+        <section class="section-dishes">
+            <div class="container ">
+                <div class="row center-title text-center">
+                <h3>All Rooms</h3>
+                        <span class="center-line"></span>
+                        </div>
+                        <div class="row">
+                    <div class="col-sm-4">
+                    <h3>
+                    <a href="{{ URL::to('rooms/create') }}" class="list-group-item"><i class="pe-7s-plus"></i>Add Room</a>
+                    <a href="{{ URL::to('rooms-occupied') }}" class="list-group-item"><i class="pe-7s-key"></i>Occupied Rooms</a>
+                    <a href="{{ URL::to('rooms-vacant') }}" class="list-group-item"><i class="pe-7s-like2"></i>Vacant Rooms</a>
+                    <a href="{{ URL::to('rooms') }}" class="list-group-item"><i class="pe-7s-note2"></i>All Rooms</a>
+                    </h3>
+                        </div>
+                    <div class="col-sm-8 ">
+<table id="datatable" class="table dt-responsive nowrap">
+    <thead>
+    <tr>
             <th scope="col">Room</th>
             <th scope="col">User</th>
             <th scope="col">Status</th>
@@ -21,7 +47,7 @@
             <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
             <td>
             @if($room->status == true)
-            <b>{{$room->user->name}}</b>
+            <b><a href="/users/{{$room->user->id}}">{{$room->user->name}}</a></b>
             @else
             <b>---</b>
             @endif
@@ -47,4 +73,19 @@
         @endforeach
     </tbody>
 </table>
+                    </div> 
+                    
+                    </div>
+                </div>
+            </div>
+        </section><!--section dishes-->
+        @section('scripts')
+<script src="/datatables/jquery.dataTables.min.js"></script>
+        <script src="/datatables/dataTables.responsive.min.js"></script>
+        <script>
+            $(document).ready(function() {
+        $('#datatable').dataTable();
+        });
+        </script>
+@endsection
 @endsection

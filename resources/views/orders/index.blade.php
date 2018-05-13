@@ -53,7 +53,7 @@
         @foreach($orders as $order)
         <tr>
             <th scope="row"><a href="/orders/{{$order->id}}">{{$order->id}}</a></th>
-            <td>{{$order->user->name}}</td>
+            <td><a href="/users/{{$order->user->id}}">{{$order->user->name}}</a></td>
             <td>{{$order->description}}</td>
             <td>{{$order->user->room->room}}</td>
             <td>
@@ -80,10 +80,13 @@
             <td>
             @if( $order->status != true)
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ URL::to('orders/' . $order->id . '/edit') }}">
-                        <button type="button" class="btn btn-warning">Modify</button>
-                    </a>&nbsp;
-                    <form action="{{url('orders', [$order->id])}}" method="POST">
+                <form action="/orders/deliver" method="POST" onsubmit="return confirm('Do you really want to set the order as delivered?')">
+                @csrf
+                <input type="hidden" name="id" value="{{$order->id}}">
+                        <button type="submit" class="btn btn-warning">Delivered</button>
+                    </form>
+                    &nbsp;
+                    <form action="{{url('orders', [$order->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete the order?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />
