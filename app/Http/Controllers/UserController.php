@@ -22,8 +22,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+       
+                if(Auth::user()->role == 'ADMIN')
+            {
+                $users = User::all();
+            }
+            if(Auth::user()->role == 'LOBBY')
+            {
+                $users = User::where('role', 'CLIENT')->get();
+            }
+            return view('users.index', compact('users'));
+        
+            return redirect('/');
+        
+        
     }
 
     /**
