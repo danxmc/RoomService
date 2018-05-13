@@ -17,7 +17,7 @@ class CreateRoomsTable extends Migration
             $table->increments('id');
             $table->integer('room');
             $table->boolean('status');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('capacity');
             $table->decimal('price', 8, 2);
             $table->unsignedInteger('user_id')->nullable();
