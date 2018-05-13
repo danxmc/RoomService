@@ -62,20 +62,25 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                     <div class="col-sm-7">
-                    <p></p>
-                    </textarea>
+                    @if($room->description != NULL)
+                    <p>{{$room->description}}</p>
+                   @endif
                     </div>
                     </div>
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">No. of People:</label>
                     <div class="col-sm-7">
-                    <p></p>
+                    @if($room->capacity != NULL)
+                    <p>{{$room->capacity}}</p>
+                   @endif
                     </div>
                     </div>
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Price:</label>
                     <div class="col-sm-7">
-                    <p></p>
+                    @if($room->price != NULL)
+                    <p>{{$room->price}}</p>
+                   @endif
                     </div>
                     </div>
                     </div> 

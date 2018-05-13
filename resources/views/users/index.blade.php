@@ -66,7 +66,7 @@
                     </div>
                     </diV>
                     <div class="col-sm-6">
-                    <form action="{{url('users', [$user->id])}}" method="POST">
+                    <form action="{{url('users', [$user->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete the user?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />
@@ -74,7 +74,7 @@
                     </div>
                 @endif
                 @if(Auth::user()->role == 'LOBBY')
-                <form action="{{url('users', [$user->id])}}" method="POST">
+                <form action="{{url('users', [$user->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete the user?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />

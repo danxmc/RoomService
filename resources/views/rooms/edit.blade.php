@@ -4,7 +4,7 @@
 
 <h1>Edit Room</h1>
 <hr>
-<form action="{{url('rooms', [$room->id])}}" method="post">
+<form action="{{url('rooms', [$room->id])}}" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT"> 
     {{ csrf_field() }}
     <div class="form-group">

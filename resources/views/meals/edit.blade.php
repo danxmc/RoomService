@@ -17,7 +17,7 @@
         <section class="section-dishes">
             <div class="container">
                 <div class="row single-product">
-                <form action="{{url('meals', [$meal->id])}}" method="POST" enctype="multipart/form-data">
+                <form action="{{url('meals', [$meal->id])}}" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to save these changes?')">
     <input type="hidden" name="_method" value="PUT" > 
     {{ csrf_field() }}
                     <div class="col-sm-5 col-sm-offset-1">

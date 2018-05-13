@@ -26,7 +26,7 @@
                     </h3>
                         </div>
                 <div class="col-sm-8">
-                    <form action="/rooms" method="post">
+                    <form action="/rooms" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Number:</label>
@@ -44,7 +44,7 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">No. of People:</label>
                     <div class="col-sm-7">
-                    <input type="number" class="form-control" name="people" step="1">
+                    <input type="number" class="form-control" name="capacity" step="1">
                     </div>
                     </div>
                     <div class="row form-group">

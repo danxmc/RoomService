@@ -50,7 +50,7 @@
                 </div>
                 </div>
                 <div class="col-sm-6">
-                    <form action="{{url('meals', [$meal->id])}}" method="POST">
+                    <form action="{{url('meals', [$meal->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete the item?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />
