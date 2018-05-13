@@ -108,4 +108,10 @@ class MealController extends Controller
         $request->session()->flash('message', 'Successfully deleted the meal!');
         return redirect('meals');
     }
+    
+    public function price(Request $request)
+    {
+        $meal = Meal::find($request->get("meal"));
+        return response(''.$meal->price);
+    }
 }

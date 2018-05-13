@@ -17,8 +17,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.index', compact('orders'));
+        if(Auth::user()->role == "ADMIN" || Auth::user()->role == "COOK")
+        {
+            $orders = Order::all();
+            return view('orders.index', compact('orders'));
+        }
+        if(Auth::user()->role == "CLIENT"){
+            $orders = Order::where('user_id', Auth::user()->id)->get();
+            return view('orders.byUser', compact('orders'));
+        }
+        return redirect('/');
     }
 
     /**
@@ -155,9 +163,4 @@ class OrderController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function userOrders()
-    {
-        $orders = Order::where('user_id', Auth::user()->id)->get();
-        return view('orders.byUser', compact('orders'));
-    }
 }
