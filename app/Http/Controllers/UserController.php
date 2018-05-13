@@ -7,6 +7,7 @@ use App\Room;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+        if(Auth::check())
+        {
                 if(Auth::user()->role == 'ADMIN')
             {
                 $users = User::all();
@@ -32,7 +34,7 @@ class UserController extends Controller
                 $users = User::where('role', 'CLIENT')->get();
             }
             return view('users.index', compact('users'));
-        
+        }
             return redirect('/');
         
         
