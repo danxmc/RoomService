@@ -22,6 +22,8 @@ Route::resource('users', 'UserController');
 Auth::routes();
 
 Route::post('/orders/deliver', 'OrderController@setDelivered');
+Route::post('/room/free', 'RoomController@freeRoom');
+Route::post('/room/occupy', 'RoomController@occupyRoom');
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/orders-pending', 'OrderController@pending');

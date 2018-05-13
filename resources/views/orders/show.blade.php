@@ -46,7 +46,17 @@
                         <p> @if($order->status == true)
                                 Delivered
                             @else
+                           
                                 Not Delivered
+                                @if(Auth::check())
+                                    @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'COOK')
+                                    <form action="/orders/deliver" method="POST" onsubmit="return confirm('Do you really want to set the order as delivered?')">
+                @csrf
+                <input type="hidden" name="id" value="{{$order->id}}">
+                        <button type="submit" class="btn btn-warning">Delivered</button>
+                    </form>
+                                    @endif
+                                @endif
                             @endif
                         </p>
                     </div>

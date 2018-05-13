@@ -69,7 +69,7 @@
                 {{ $total }}
             </td>
 
-            @if( $order->status != true)
+            <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                 <form action="/orders/deliver" method="POST" onsubmit="return confirm('Do you really want to set the order as delivered?')">
                 @csrf
@@ -83,7 +83,8 @@
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>
                 </div>
-                @endif
+                </td>
+              
         </tr>
         @endforeach
     </tbody>

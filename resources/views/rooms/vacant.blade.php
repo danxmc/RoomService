@@ -19,7 +19,7 @@
         <section class="section-dishes">
             <div class="container ">
                 <div class="row center-title text-center">
-                <h3>Occupied Rooms</h3>
+                <h3>Vacant Rooms</h3>
                         <span class="center-line"></span>
                         </div>
                         <div class="row">
@@ -43,18 +43,29 @@
         @foreach($rooms as $room)
         <tr>
             <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
+            @if(Auth::check())
+            @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ URL::to('rooms/' . $room->id . '/edit') }}">
-                        <button type="button" class="btn btn-warning">Edit</button>
-                    </a>&nbsp;
-                    <form action="{{url('rooms', [$room->id])}}" method="POST">
+            <div class="col-sm-6">
+                <form action="/room/occupy" method="POST" onsubmit="return confirm('Do you really want to set the room as occupied?')">
+                @csrf
+                    <input type="hidden" name="id" value="{{$room->id}}">
+                        <button type="submit" class="btn btn-warning">Occupy</button>
+                    </form>
+                </div>
+                @if(Auth::user()->role == 'ADMIN')
+                <div class="col-sm-6">
+                    <form action="{{url('rooms', [$room->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete the room?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>
                 </div>
+                @endif
+            
             </td>
+            @endif
+            @endif
         </tr>
         @endforeach
     </tbody>

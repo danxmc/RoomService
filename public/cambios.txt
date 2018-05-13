@@ -1,0 +1,8 @@
+añadir fotos a meals
+añadir fotos a usuarios
+añadir categoria a meals
+
+ordenar menus por categorias
+
+agregar los cambios a edit de meal
+

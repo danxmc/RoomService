@@ -125,4 +125,22 @@ class RoomController extends Controller
         $rooms = Room::where('status', false)->get();
         return view('rooms.vacant', compact('rooms'));
     }
+
+    public function freeRoom(Request $request)
+    {
+        Room::where('id', $request->post('id'))->update(array('status' => '0'));
+        $room = Room::find($request->post('id'));
+        if($room->uer != NULL){
+            $room->user->detach();
+        }
+        
+        $request->session()->flash('message', 'Successfully modified the room!');
+        return redirect('rooms');
+    }
+    public function occupyRoom(Request $request)
+    {
+        Room::where('id', $request->post('id'))->update(array('status' => '1'));
+        $request->session()->flash('message', 'Successfully modified the room!');
+        return redirect('rooms');
+    }
 }
