@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Room;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -58,6 +59,19 @@ class UserController extends Controller
             $user->room()->save($room);
         }
 
+        // Sets image for the user
+        $images = $request->file('image');
+        foreach($images as $image){
+            $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('\images'), $photoName);
+
+            $picture = Image::create([
+                'route' => $photoName,
+                ]);
+            $user->image()->save($picture);
+            $picture->user()->associate($user)->save();
+        }
+
         return redirect('/users/' . $user->id);
     }
 
@@ -108,6 +122,21 @@ class UserController extends Controller
     
             $user->room()->save($room);
             $user = User::findOrFail($user->id)->update($request->all());
+        }
+
+        if ($request['image']) {
+            // Sets image for the user
+            $images = $request->file('image');
+            foreach($images as $image){
+                $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('\images'), $photoName);
+    
+                $picture = Image::create([
+                    'route' => $photoName,
+                    ]);
+                $user->image()->save($picture);
+                $picture->user()->associate($user)->save();
+            }
         }
         
         $request->session()->flash('message', 'Successfully modified the user!');
