@@ -37,7 +37,11 @@
             <th scope="col">Name</th>
             <th scope="col">On Room</th>
             <th scope="col">Role</th>
+            @if(Auth::check())
+                @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <th scope="col">Action</th>
+            @endif
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -50,8 +54,11 @@
             <td><b>{{$user->room->room}}</b></td>
             @endif
             <td><b>{{$user->role}}</b></td>
+            @if(Auth::check())
+                @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <td>
             <div class="col-sm-6">
+            @if(Auth::user()->role == 'ADMIN')
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ URL::to('users/' . $user->id . '/edit') }}">
                         <button type="button" class="btn btn-warning">Edit</button>
@@ -65,8 +72,18 @@
                         <input type="submit" class="btn btn-danger" value="Delete" />
                     </form>
                     </div>
-                
+                @endif
+                @if(Auth::user()->role == 'LOBBY')
+                <form action="{{url('users', [$user->id])}}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-danger" value="Delete" />
+                    </form>
+                    </div>
+                @endif
             </td>
+            @endif
+            @endif
         </tr>
         @endforeach
     </tbody>
