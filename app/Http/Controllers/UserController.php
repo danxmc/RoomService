@@ -57,6 +57,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'image' => 'required_unless:role, "CLIENT"|image',
+        ]);
+        
         $data = $request->all();
         $data['password'] = Hash::make($request['password']);
 
@@ -119,6 +127,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //Validate
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'image' => 'required_with:room_id|image',
+        ]);
+        
         $data = $request->all();
 
         if ($request['password']) {
