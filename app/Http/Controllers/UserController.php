@@ -72,7 +72,6 @@ class UserController extends Controller
         }
 
         // Sets image for the user
-
         if($request->has('image')){
             $image = $request->file('image');
             $photoName = time() . $image->getClientOriginalName();
@@ -119,7 +118,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {   
+    {
+        $data = $request->all();
+
+        if ($request['password']) {
+            $data['password'] = Hash::make($request['password']);
+        }
+        
         // Unset previous room status
         if ($user->room != NULL) {
             $room = Room::findOrFail($user->room->id)->update(['status' => false, 'user_id' => NULL]);
@@ -133,7 +138,7 @@ class UserController extends Controller
             $user->room()->save($room);
         }
         
-        User::findOrFail($user->id)->update($request->all());
+        User::findOrFail($user->id)->update($data);
             
         if ($request->file('image')) {
             // Unset previous image

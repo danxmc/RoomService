@@ -107,9 +107,6 @@ class MealController extends Controller
             'description' => 'required',
         ]);
         
-
-        
-        
         if($request->has('del_img')){
             $del_imgs = $request->post('del_img');
 
@@ -121,18 +118,17 @@ class MealController extends Controller
         
         if($request->has('image')){
             $images = $request->file('image');
-        foreach($images as $image){
-            if($image != NULL){
-                $photoName = time() . $image->getClientOriginalName();
-            $image->move(public_path('\img\meals'), $photoName);
-            $picture = Image::create([
-                'route' => '/img/meals/'.$photoName,
-                ]);
-            $meal->images()->save($picture);
-            $picture->meal()->associate($meal)->save();
+            foreach($images as $image){
+                if($image != NULL){
+                    $photoName = time() . $image->getClientOriginalName();
+                    $image->move(public_path('\img\meals'), $photoName);
+                    $picture = Image::create([
+                        'route' => '/img/meals/'.$photoName,
+                    ]);
+                    $meal->images()->save($picture);
+                    $picture->meal()->associate($meal)->save();
+                }
             }
-            
-        }
         }
         Meal::findOrFail($meal->id)->update($request->all());
 
@@ -151,15 +147,12 @@ class MealController extends Controller
     {
         $meal->delete();
         $request->session()->flash('message', 'Successfully deleted the meal!');
-
-        
-
         return redirect('meals');
     }
     
     public function price(Request $request)
     {
         $meal = Meal::find($request->get("meal"));
-        return response(''.$meal->price);
+        return response('' . $meal->price);
     }
 }
