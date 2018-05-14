@@ -13,17 +13,17 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-1.jpg',
             'user_id' => NULL,
             'meal_id' => 1,
         ]);
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-2.jpg',
             'user_id' => NULL,
             'meal_id' => 2,
         ]);
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-3.jpg',
             'user_id' => NULL,
             'meal_id' => 3,
         ]);
@@ -33,17 +33,17 @@ class ImagesTableSeeder extends Seeder
             'meal_id' => 4,
         ]);
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-5.jpg',
             'user_id' => NULL,
             'meal_id' => 5,
         ]);
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-6.jpg',
             'user_id' => NULL,
             'meal_id' => 1,
         ]);
         Image::create([
-            'route' => '/img/resto/img-4.jpg',
+            'route' => '/img/resto/img-7.jpg',
             'user_id' => NULL,
             'meal_id' => 1,
         ]);
