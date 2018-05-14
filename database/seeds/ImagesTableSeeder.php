@@ -52,5 +52,15 @@ class ImagesTableSeeder extends Seeder
             'user_id' => 2,
             'meal_id' => NULL,
         ]);
+        Image::create([
+            'route' => '/img/team-2.jpg',
+            'user_id' => 1,
+            'meal_id' => NULL,
+        ]);
+        Image::create([
+            'route' => '/img/team-3.jpg',
+            'user_id' => 5,
+            'meal_id' => NULL,
+        ]);
     }
 }
