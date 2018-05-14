@@ -52,10 +52,10 @@ class MealController extends Controller
         $images = $request->file('image');
         foreach($images as $image){
             $photoName = time() . $image->getClientOriginalName();
-            $image->move(public_path('\images\meals'), $photoName);
+            $image->move(public_path('\img\meals'), $photoName);
 
             $picture = Image::create([
-                'route' => '/images/meals/'.$photoName,
+                'route' => '/img/meals/'.$photoName,
                 ]);
             $meal->images()->save($picture);
             $picture->meal()->associate($meal)->save();
