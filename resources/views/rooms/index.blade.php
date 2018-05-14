@@ -40,8 +40,10 @@
     <thead>
     <tr>
             <th scope="col">Room</th>
-            <th scope="col">User</th>
             <th scope="col">Status</th>
+            <th scope="col">Description</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Price</th>
             @if(Auth::check())
             @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <th scope="col">Action</th>
@@ -53,18 +55,20 @@
         @foreach($rooms as $room)
         <tr>
             <td><a href="/rooms/{{$room->id}}">{{$room->room}}</a></td>
-            <td>
-            @if($room->status == true AND $room->user != NULL)
-            <b><a href="/users/{{$room->user->id}}">{{$room->user->name}}</a></b>
-            @else
-            <b>---</b>
-            @endif
-            </td>
             @if($room->status == true)
-            <td><b>Occupied</b></td>
+            <td><b>Occupied</b> @if($room->user != NULL) by <b><a href="/users/{{$room->user->id}}">{{$room->user->name}}</a></b>@endif</td>
             @else
             <td><b>Vacant</b></td>
             @endif
+            <td>
+            @if($room->description != NULL)
+            {{$room->description}}
+            @else
+            ---
+            @endif
+            </td>
+            <td>{{$room->capacity}}</td>
+            <td>${{$room->price}} the night</td>
             @if(Auth::check())
             @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <td>
