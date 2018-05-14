@@ -40,7 +40,14 @@
     <tr>
             <th scope="col">Room</th>
             <th scope="col">User</th>
+            <th scope="col">Description</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Price</th>
+            @if(Auth::check())
+            @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <th scope="col">Action</th>
+            @endif
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -54,6 +61,15 @@
             <b>---</b>
             @endif
             </td>
+            <td>
+            @if($room->description != NULL)
+            {{$room->description}}
+            @else
+            ---
+            @endif
+            </td>
+            <td>{{$room->capacity}}</td>
+            <td>${{$room->price}} the night</td>
             @if(Auth::check())
             @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'LOBBY')
             <td>
