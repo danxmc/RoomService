@@ -42,7 +42,7 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Token:</label>
                     <div class="col-sm-7">
-                        <input type="email" value="{{$user->email}}" class="form-control" id="userEmail" name="email">
+                        <input type="text" value="{{$user->email}}" class="form-control" id="userEmail" name="email">
                     </div>
                     </div>
                         </div>
