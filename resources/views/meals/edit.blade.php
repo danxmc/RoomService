@@ -31,13 +31,12 @@
                             @endforeach
                             @else
                             <p>No pictures available for this meal</p>
-                            <input type ="hidden" name="del_img[]" value="">
                             @endif
                             </div>
                             <span> Add images </span>
                             <div id="imageInputs">
                             <div class="form-group" >
-                            <input type="file" name="meal_image[]">
+                            <input type="file" name="image[]">
                             </div>
                             </div>
                             <button type="button" onclick="addImg()" class="btn btn-circle btn-primary btn-icon"><i class="fa fa-plus"></i></button>Add Image
@@ -130,7 +129,7 @@ responsive:{
 });
 
 function addImg(){
-    $("#imageInputs").append('<div class="form-group" ><input type="file" name="meal_image[]"></div>');
+    $("#imageInputs").append('<div class="form-group" ><input type="file" name="image[]"></div>');
 }
 </script>
     @endsection

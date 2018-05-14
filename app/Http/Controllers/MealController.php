@@ -102,9 +102,38 @@ class MealController extends Controller
             'price' => 'required',
             'description' => 'required',
         ]);
-        $meal = Meal::findOrFail($meal->id)->update($request->all());
+        
+
+        
+        
+        if($request->has('del_img')){
+            $del_imgs = $request->post('del_img');
+
+            foreach($del_imgs as $id){
+                $picture =  Image::find($id);
+                $picture->delete();
+            }
+        }
+        
+        if($request->has('image')){
+            $images = $request->file('image');
+        foreach($images as $image){
+            if($image != NULL){
+                $photoName = time() . $image->getClientOriginalName();
+            $image->move(public_path('\img\meals'), $photoName);
+            $picture = Image::create([
+                'route' => '/img/meals/'.$photoName,
+                ]);
+            $meal->images()->save($picture);
+            $picture->meal()->associate($meal)->save();
+            }
+            
+        }
+        }
+        Meal::findOrFail($meal->id)->update($request->all());
+
         $request->session()->flash('message', 'Successfully modified the meal!');
-        return redirect('meals');
+        return redirect('/meals/' . $meal->id);
     }
 
     /**
