@@ -44,7 +44,7 @@
                             Make your order and we will take it to your room.
                         </p>
                         @if(Auth::check())
-                        @if(Auth::user()->role == 'ADMIN')
+                        @if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'COOK')
                         <a href="{{ URL::to('meals/create') }}" class="list-group-item">Add Meal to Menu</a>
                         @endif
                         @endif

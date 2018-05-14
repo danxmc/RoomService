@@ -121,8 +121,11 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        if ($request['password']) {
+
+        if ($request['password'] != '') {
             $data['password'] = Hash::make($request['password']);
+        }else{
+            unset($data['password']);
         }
         
         // Unset previous room status
@@ -132,17 +135,22 @@ class UserController extends Controller
         }
         
         // Set new Room
+        if($request['room_id'] ){
         if($room = Room::findOrFail($request['room_id']))
         {
             $room->status = true;
             $user->room()->save($room);
         }
+    }
         
         User::findOrFail($user->id)->update($data);
             
         if ($request->file('image')) {
             // Unset previous image
-            $user->image()->dissociate();
+            $image1 = $user->image;
+            $image1->user()->dissociate();
+            $image1->save();
+            $user->image->null;
             $user->save();
             // Sets image for the user
             $image = $request->file('image');
@@ -150,19 +158,16 @@ class UserController extends Controller
             $image->move(public_path('\img\users'), $photoName);
 
             $picture = Image::create([
-                'route' => $photoName,
-            ]);
-
+                'route' => '/img/users/'.$photoName,
+                ]);
             $user->image()->save($picture);
             $picture->user()->associate($user)->save();
         }
         
         $request->session()->flash('message', 'Successfully modified the user!');
-        if (Auth::user()->role == "ADMIN") {
-            return redirect('users');
-        } else {
-            return view('users.show', compact('user'));
-        }
+       
+            return redirect('/users/' . $user->id);
+        
     }
 
     /**

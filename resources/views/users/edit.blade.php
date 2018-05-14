@@ -14,16 +14,17 @@
                 </div>
             </div>
         </div><!--menu title-->
+        <form action="{{url('users', [$user->id])}}" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to save these changes?')">
+    <input type="hidden" name="_method" value="PUT"> 
+    {{ csrf_field() }}
+    <input type="hidden" name="role" value="{{$user->role}}">
         <section class="section-dishes">
             <div class="container ">
             <div class="row center-title text-center">
                 <h3>{{$user->role}} {{$user->name}}</h3>
                         <span class="center-line"></span>
                         </div>
-    <form action="{{url('users', [$user->id])}}" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to save these changes?')">
-    <input type="hidden" name="_method" value="PUT"> 
-    {{ csrf_field() }}
-    <input type="hidden" name="role" value="{{$user->role}}"
+    
                 <div class="row single-product">
                 <div class="col-sm-5 col-sm-offset-1 ">
                     
@@ -51,13 +52,14 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">New Password:</label>
                     <div class="col-sm-7">
-                        <input type="password"  class="form-control" name="password">
+                        <input type="password" class="form-control" name="password">
                     </div>
                     </div>
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                     <div class="col-sm-7">
-                    <textarea rows="5" class="form-control" name="description">@if($user->description != NULL)
+                    <textarea rows="5" class="form-control" name="description">
+                    @if($user->description != NULL)
                     {{$user->description}}
                     @endif
                     </textarea>
@@ -76,7 +78,7 @@
                                 </div>
                     </div>
                     <span>Change image</span>
-                    <input type="file" name="user_image">
+                    <input type="file" name="image">
                     </div>
                     </div>
                     @else
@@ -94,7 +96,7 @@
                     @endif
                     <div class="row pull-right">
                     <button type="submit" class="btn btn-primary">Edit User!</button>
-                        </form>
+                        
                     </div>
                     </div> 
                     
@@ -111,6 +113,7 @@
     @endif
             </div>
         </section><!--section dishes-->
+        </form>
     @section('scripts')
     <!--owl carousel slider js-->
     <script src="/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
