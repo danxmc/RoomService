@@ -116,7 +116,10 @@ class MealController extends Controller
 
             foreach($del_imgs as $id){
                 $picture =  Image::find($id);
-                $picture->delete();
+                if($picture != NULL){
+                    $picture->delete();
+                }
+                
             }
         }
         

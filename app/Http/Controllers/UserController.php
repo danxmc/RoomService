@@ -114,8 +114,14 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if($user->room != NULL){
+        $room = $user->room;
+        }else{
+        $room="no";
+        }
+        
         $rooms = Room::where('status', false)->get();
-        return view('users.edit', compact('user', 'rooms'));
+        return view('users.edit', compact('user', 'rooms', 'room'));
     }
 
     /**
@@ -131,7 +137,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'image' => 'required_without:room_id|image',
         ]);
         
         $data = $request->all();
@@ -162,11 +167,15 @@ class UserController extends Controller
             
         if ($request->file('image')) {
             // Unset previous image
+            if($user->image !=NULL)
+            {
             $image1 = $user->image;
             $image1->user()->dissociate();
             $image1->save();
             $user->image->null;
             $user->save();
+            }
+            
             // Sets image for the user
             $image = $request->file('image');
             $photoName = time() . $image->getClientOriginalName();

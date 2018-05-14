@@ -87,6 +87,9 @@
                         <label class="col-sm-3 control-label">Room:</label>
                     <div class="col-sm-7">
                     <select class="form-control" id="room" name="room_id">
+                    @if($room != 'no')
+                    <option selected value="{{$room->id}}">{{$room->room}}</option>
+                    @endif
                     @foreach($rooms as $room)
                     <option value="{{$room->id}}">{{$room->room}}</option>
                     @endforeach

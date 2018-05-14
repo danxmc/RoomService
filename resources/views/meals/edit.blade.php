@@ -59,9 +59,17 @@
     <div class="form-group">
         <label for="price">Meal Category</label>
         <select name ="category" required>
-        <option value="Food">Food</option>
-        <option value="Drink">Drink</option>
-        <option value="Dessert">Dessert</option>
+        <option value="Food"
+        @if($meal->category == "Food")
+        selected
+        @endif
+        >Food</option>
+        <option value="Drink" @if($meal->category == "Drink")
+        selected
+        @endif>Drink</option>
+        <option value="Dessert" @if($meal->category == "Dessert")
+        selected
+        @endif>Dessert</option>
         </select>
     </div>
     @if ($errors->any())
