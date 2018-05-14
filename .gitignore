@@ -24,5 +24,7 @@ Homestead.json
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 
-public/img/meals
-public/img/users
+public/img/meals/*
+!public/img/meals/.gitkeep 
+public/img/users/*
+!public/img/users/.gitkeep
