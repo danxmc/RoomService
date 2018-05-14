@@ -25,7 +25,11 @@
                         <div class="row">
                     <div class="col-sm-4">
                     <h3>
+                    @if(Auth::check())
+                    @if(Auth::user()->role =='ADMIN')
                     <a href="{{ URL::to('rooms/create') }}" class="list-group-item"><i class="pe-7s-plus"></i>Add Room</a>
+                    @endif
+                    @endif
                     <a href="{{ URL::to('rooms-occupied') }}" class="list-group-item"><i class="pe-7s-key"></i>Occupied Rooms</a>
                     <a href="{{ URL::to('rooms-vacant') }}" class="list-group-item"><i class="pe-7s-like2"></i>Vacant Rooms</a>
                     <a href="{{ URL::to('rooms') }}" class="list-group-item"><i class="pe-7s-note2"></i>All Rooms</a>

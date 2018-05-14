@@ -19,7 +19,11 @@
                 <div class="row">
                 <div class="col-sm-4">
                     <h3>
+                    @if(Auth::check())
+                    @if(Auth::user()->role =='ADMIN')
                     <a href="{{ URL::to('rooms/create') }}" class="list-group-item"><i class="pe-7s-plus"></i>Add Room</a>
+                    @endif
+                    @endif
                     <a href="{{ URL::to('rooms-occupied') }}" class="list-group-item"><i class="pe-7s-key"></i>Occupied Rooms</a>
                     <a href="{{ URL::to('rooms-vacant') }}" class="list-group-item"><i class="pe-7s-like2"></i>Vacant Rooms</a>
                     <a href="{{ URL::to('rooms') }}" class="list-group-item"><i class="pe-7s-note2"></i>All Rooms</a>
@@ -37,7 +41,7 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                     <div class="col-sm-7">
-                    <textarea rows="5" class="form-control" name="decription" >
+                    <textarea rows="5" class="form-control" name="description" >
                     </textarea>
                     </div>
                     </div>
