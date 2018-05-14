@@ -131,7 +131,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'image' => 'required_with:room_id|image',
+            'image' => 'required_without:room_id|image',
         ]);
         
         $data = $request->all();
