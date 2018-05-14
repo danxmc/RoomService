@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         if(Auth::check())
         {
-                if(Auth::user()->role == 'ADMIN')
+            if(Auth::user()->role == 'ADMIN')
             {
                 $users = User::all();
             }
@@ -35,9 +35,7 @@ class UserController extends Controller
             }
             return view('users.index', compact('users'));
         }
-            return redirect('/');
-        
-        
+        return redirect('/');
     }
 
     /**
@@ -74,14 +72,16 @@ class UserController extends Controller
         }
 
         // Sets image for the user
-        $images = $request->file('image');
-        foreach($images as $image){
+
+        if ($request->file('image')) {
+            $image = $request->file('image');
             $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('\images'), $photoName);
+            $image->move(public_path('\img\users'), $photoName);
 
             $picture = Image::create([
                 'route' => $photoName,
-                ]);
+            ]);
+
             $user->image()->save($picture);
             $picture->user()->associate($user)->save();
         }
@@ -121,36 +121,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {   
-        //Unset previous room status
+        // Unset previous room status
         if ($user->room != NULL) {
             $room = Room::findOrFail($user->room->id)->update(['status' => false, 'user_id' => NULL]);
             $user->room->status = false;
         }
         
-        if ($request['room_id'] == 'NoRoom') {
-            $user = User::findOrFail($user->id)->update($request->all());
-        } else {
-            //Set new Room
-            $room = Room::findOrFail($request['room_id']);
-            $room->status = true;
-    
-            $user->room()->save($room);
-            $user = User::findOrFail($user->id)->update($request->all());
-        }
+        // Set new Room
+        $room = Room::findOrFail($request['room_id']);
+        $room->status = true;
 
-        if ($request['image']) {
+        $user->room()->save($room);
+        $user = User::findOrFail($user->id)->update($request->all());
+        
+
+        if ($request->file('image')) {
+            // Unset previous image
+            $user->image()->dissociate();
+            $user->save();
             // Sets image for the user
-            $images = $request->file('image');
-            foreach($images as $image){
-                $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('\images'), $photoName);
-    
-                $picture = Image::create([
-                    'route' => $photoName,
-                    ]);
-                $user->image()->save($picture);
-                $picture->user()->associate($user)->save();
-            }
+            $image = $request->file('image');
+            $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('\img\users'), $photoName);
+
+            $picture = Image::create([
+                'route' => $photoName,
+            ]);
+
+            $user->image()->save($picture);
+            $picture->user()->associate($user)->save();
         }
         
         $request->session()->flash('message', 'Successfully modified the user!');

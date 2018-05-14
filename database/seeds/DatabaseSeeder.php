@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
             ImagesTableSeeder::class,
         ]);
         factory('App\User', 10)->create();
-        factory('App\Meal', 3)->create();
+        //factory('App\Meal', 3)->create();
     }
 }
