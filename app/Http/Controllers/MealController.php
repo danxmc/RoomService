@@ -46,6 +46,8 @@ class MealController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
+            'category' => 'required',
+            'image.*' => 'required|image',
         ]);
         
         $meal = Meal::create($request->all());
@@ -105,6 +107,8 @@ class MealController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
+            'category' => 'required',
+            'image.*' => 'required|image',
         ]);
         
         if($request->has('del_img')){
