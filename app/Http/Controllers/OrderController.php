@@ -128,7 +128,6 @@ class OrderController extends Controller
         Order::where('id', $request->post('id'))->update(array('status' => '1'));
         $request->session()->flash('message', 'Successfully modified the order!');
         return redirect('orders');
-
     }
 
     /**
