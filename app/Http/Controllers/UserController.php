@@ -73,18 +73,17 @@ class UserController extends Controller
 
         // Sets image for the user
 
-        if ($request->file('image')) {
+        if($request->has('image')){
             $image = $request->file('image');
-            $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+            $photoName = time() . $image->getClientOriginalName();
             $image->move(public_path('\img\users'), $photoName);
 
             $picture = Image::create([
-                'route' => $photoName,
-            ]);
-
+                'route' => '/img/users/'.$photoName,
+                ]);
             $user->image()->save($picture);
             $picture->user()->associate($user)->save();
-        }
+            }
 
         return redirect('/users/' . $user->id);
     }

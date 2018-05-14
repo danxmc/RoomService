@@ -57,7 +57,7 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                     <div class="col-sm-7">
-                    <textarea rows="5" class="form-control" name="decription">@if($user->description != NULL)
+                    <textarea rows="5" class="form-control" name="description">@if($user->description != NULL)
                     {{$user->description}}
                     @endif
                     </textarea>
