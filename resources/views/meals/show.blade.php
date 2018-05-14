@@ -19,11 +19,15 @@
                 <div class="row single-product">
                     <div class="col-sm-5 col-sm-offset-1">
                             <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
+                            @if($meal->images != NULL)
                             @foreach($meal->images as $image)
                                 <div class="item">
                                     <a href="{{$image->route}}" data-lightbox="roadtrip"> <img src="{{$image->route}}" alt="Product image" class="img-responsive"></a>                              
                                 </div>
                             @endforeach
+                            @else
+                            <p>No picture available</p>
+                            @endif
                             </div>
                         </div>
                         <div class="col-sm-6 center-title text-center">
@@ -75,7 +79,11 @@
                     @foreach($meals as $meal)
                         <div class="item">
                             <div class="dishes-box">
+                            @if($meal->images != NULL)
                                 <img src="{{$meal->images[0]->route}}" class="img-responsive" alt="">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" alt="">
+                                @endif
                                 <span class="price-dishes">${{$meal->price}}</span>
                                 <div class="dishes-desc">
                                     <h3><a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h3>

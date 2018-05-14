@@ -83,7 +83,7 @@
         {
             $('#formbody').html('<input type="hidden"  id="userPassword" name="password" value="guest"><div class="row form-group"><label class="col-sm-3 control-label">Room</label><div class="col-sm-7"><select class="form-control" id="room" name="room_id">@foreach($rooms as $room)<option value="{{$room->id}}">{{$room->room}}</option>@endforeach</select></div></div>');
         }else{
-            $('#formbody').html('<input type="hidden" name="room_id" value="NoRoom"><div class="row form-group"><label class="col-sm-3 control-label">Description:</label><div class="col-sm-7"><textarea rows="5" class="form-control" name="decription" ></textarea></div></div><div class="row form-group"><label class="col-sm-3 control-label">Password:</label><div class="col-sm-7"><input type="password" class="form-control" id="userPassword" name="password"></div></div><div class="form-group" ><input type="file" name="user_image"></div>');
+            $('#formbody').html('<input type="hidden" name="room_id" value="NoRoom"><div class="row form-group"><label class="col-sm-3 control-label">Description:</label><div class="col-sm-7"><textarea rows="5" class="form-control" name="decription" ></textarea></div></div><div class="row form-group"><label class="col-sm-3 control-label">Password:</label><div class="col-sm-7"><input type="password" class="form-control" id="userPassword" name="password"></div></div><div class="form-group" ><input type="file" name="image"></div>');
         }
     }
 </script>

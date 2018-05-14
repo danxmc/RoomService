@@ -19,7 +19,7 @@
                             <h3> Add images </h3>
                             <div id="imageInputs">
                             <div class="form-group" >
-                            <input type="file" name="meal_image[]">
+                            <input type="file" name="image[]">
                             </div>
                             </div>
                             <button type="button" onclick="addImg()" class="btn btn-circle btn-primary btn-icon"><i class="fa fa-plus"></i></button>Add Image
@@ -69,7 +69,7 @@
 @section('scripts')
 <script>
 function addImg(){
-    $("#imageInputs").append('<div class="form-group" ><input type="file" name="meal_image[]"></div>');
+    $("#imageInputs").append('<div class="form-group" ><input type="file" name="image[]"></div>');
 }
 </script>
 @endsection

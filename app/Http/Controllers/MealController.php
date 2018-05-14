@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meal;
 use App\User;
+use App\Image;
 use Illuminate\Http\Request;
 
 class MealController extends Controller
@@ -48,6 +49,17 @@ class MealController extends Controller
         ]);
         
         $meal = Meal::create($request->all());
+        $images = $request->file('image');
+        foreach($images as $image){
+            $photoName = time() . $image->getClientOriginalName();
+            $image->move(public_path('\images\meals'), $photoName);
+
+            $picture = Image::create([
+                'route' => '/images/meals/'.$photoName,
+                ]);
+            $meal->images()->save($picture);
+            $picture->meal()->associate($meal)->save();
+        }
         return redirect('/meals/' . $meal->id);
     }
 
@@ -106,6 +118,9 @@ class MealController extends Controller
     {
         $meal->delete();
         $request->session()->flash('message', 'Successfully deleted the meal!');
+
+        
+
         return redirect('meals');
     }
     

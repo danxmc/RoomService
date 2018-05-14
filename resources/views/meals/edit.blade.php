@@ -22,14 +22,17 @@
     {{ csrf_field() }}
                     <div class="col-sm-5 col-sm-offset-1">
                             <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
-                            <!--foreach-->
+                            @if($meal->images !=null)
                             @foreach($meal->images as $image)
                                 <div class="item">
                                     <a href="{{$image->route}}" data-lightbox="roadtrip"> <img src="{{$image->route}}" alt="Product image" class="img-responsive"></a>                              
                                     <input type="checkbox" name="del_img[]" value="{{$image->id}}">Delete
                                 </div>
                             @endforeach
-                            
+                            @else
+                            <p>No pictures available for this meal</p>
+                            <input type ="hidden" name="del_img[]" value="">
+                            @endif
                             </div>
                             <span> Add images </span>
                             <div id="imageInputs">

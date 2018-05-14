@@ -79,7 +79,7 @@
                         <label class="col-sm-3 control-label">Price:</label>
                     <div class="col-sm-7">
                     @if($room->price != NULL)
-                    <p>{{$room->price}}</p>
+                    <p>${{$room->price}} the night</p>
                    @endif
                     </div>
                     </div>

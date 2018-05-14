@@ -57,7 +57,11 @@
                         @foreach($foods as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                            @if($meal->images != NULL)
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -74,7 +78,11 @@
                         @foreach($foods as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                            @if($meal->images != NULL)
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -94,7 +102,11 @@
                         @foreach($desserts as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                            @if($meal->images != NULL)
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -111,7 +123,11 @@
                         @foreach($desserts as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                            @if($meal->images != NULL)
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -131,7 +147,11 @@
                         @foreach($drinks as $key=> $meal)
                         @if(($key+1)%2 != 0)
                             <li class="clearfix">
+                            @if($meal->images != NULL)
                                 <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
 
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
@@ -148,8 +168,11 @@
                         @foreach($drinks as $key=> $meal)
                         @if(($key+1)%2 == 0)
                             <li class="clearfix">
-                                <img src="img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
-
+                                @if($meal->images != NULL)
+                                <img src="{{$meal->images[0]->route}}" class="img-responsive" width="90" alt="menu-img">
+                                @else
+                                <img src="/img/resto/img-4.jpg" class="img-responsive" width="90" alt="menu-img">
+                                @endif
                                 <div class="detail">
                                     <h4> <a href="/meals/{{$meal->id}}">{{$meal->name}}</a></h4>
                                     {{$meal->description}}
@@ -183,7 +206,11 @@
                     <div class="col-sm-4 margin-b-30">
                         <div class="chef-box">
                             <div class="chef-thumb">
+                            @if($user->image != NULL)
                                 <img src="{{$user->image->route}}" class="img-responsive" alt="">
+                            @else
+                            <img src="/img/team-1.jpg" class="img-responsive" alt="">
+                            @endif
                                 <div class="chef-overlay">
                                     <div class="chef-social">
                                         <a href="#"><i class="fa fa-facebook"></i></a>

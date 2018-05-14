@@ -70,7 +70,8 @@
                     <div class="row form-group">
                         <label class="col-sm-3 control-label">Room:</label>
                     <div class="col-sm-7">
-                        <p>{{$user->room->room}}</p>
+                    
+                        <p><a href="/rooms/{{$user->room->id}}">{{$user->room->room}}</a></p>
                     </div>
                     </div>
                     @endif
