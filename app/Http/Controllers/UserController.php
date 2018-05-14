@@ -199,6 +199,9 @@ class UserController extends Controller
             $room = Room::findOrFail($user->room->id)->update(['status' => false, 'user_id' => NULL]);
             $user->room->status = false;
         }
+        foreach ($user->orders as $order){
+            $order->delete();
+        }
         $user->delete();
         $request->session()->flash('message', 'Successfully deleted the user!');
         return redirect('users');

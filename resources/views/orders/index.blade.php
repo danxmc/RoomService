@@ -53,9 +53,17 @@
         @foreach($orders as $order)
         <tr>
             <th scope="row"><a href="/orders/{{$order->id}}">{{$order->id}}</a></th>
+            @if($order->user != NULL)
             <td><a href="/users/{{$order->user->id}}">{{$order->user->name}}</a></td>
+            @else
+            <td></td>
+            @endif
             <td>{{$order->description}}</td>
+            @if($order->user != NULL)
             <td>{{$order->user->room->room}}</td>
+            @else
+            <td></td>
+            @endif
             <td>
                 @foreach($order->meals as $meal)
                 {{ $meal->name }} - ${{$meal->price}} x {{ $meal->pivot->meal_quantity }}<br>
