@@ -49,8 +49,10 @@ class MealController extends Controller
         ]);
         
         $meal = Meal::create($request->all());
+        if($request->has('image')){
         $images = $request->file('image');
         foreach($images as $image){
+            if($image != NULL){
             $photoName = time() . $image->getClientOriginalName();
             $image->move(public_path('\img\meals'), $photoName);
 
@@ -59,7 +61,9 @@ class MealController extends Controller
                 ]);
             $meal->images()->save($picture);
             $picture->meal()->associate($meal)->save();
+            }
         }
+    }
         return redirect('/meals/' . $meal->id);
     }
 
