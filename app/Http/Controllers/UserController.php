@@ -127,20 +127,21 @@ class UserController extends Controller
         }
         
         // Set new Room
-        $room = Room::findOrFail($request['room_id']);
-        $room->status = true;
-
-        $user->room()->save($room);
-        $user = User::findOrFail($user->id)->update($request->all());
+        if($room = Room::findOrFail($request['room_id']))
+        {
+            $room->status = true;
+            $user->room()->save($room);
+        }
         
-
+        User::findOrFail($user->id)->update($request->all());
+            
         if ($request->file('image')) {
             // Unset previous image
             $user->image()->dissociate();
             $user->save();
             // Sets image for the user
             $image = $request->file('image');
-            $photoName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+            $photoName = time() . $image->getClientOriginalName();
             $image->move(public_path('\img\users'), $photoName);
 
             $picture = Image::create([
