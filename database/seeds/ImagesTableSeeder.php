@@ -40,21 +40,6 @@ class ImagesTableSeeder extends Seeder
         Image::create([
             'route' => '/img/resto/img-4.jpg',
             'user_id' => NULL,
-            'meal_id' => 6,
-        ]);
-        Image::create([
-            'route' => '/img/resto/img-4.jpg',
-            'user_id' => NULL,
-            'meal_id' => 7,
-        ]);
-        Image::create([
-            'route' => '/img/resto/img-4.jpg',
-            'user_id' => NULL,
-            'meal_id' => 8,
-        ]);
-        Image::create([
-            'route' => '/img/resto/img-4.jpg',
-            'user_id' => NULL,
             'meal_id' => 1,
         ]);
         Image::create([
